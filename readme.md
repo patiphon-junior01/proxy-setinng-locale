@@ -21,6 +21,10 @@ RewriteRule ^(.*)$ index.php [QSA,L]
 library & Framework
 Bootstrap  v5.2.2
 fontawesome 5.15.4
+jQuery v3.6.0
+sweetalert2 v11.4.0
+date_thai
+DataTables 1.3.4
 
 Theme Adminlte
 AdminLTE v3.2.0
