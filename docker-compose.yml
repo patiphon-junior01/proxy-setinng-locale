@@ -1,0 +1,73 @@
+version: "3"
+
+services:
+  std-db:
+    image: mysql
+    container_name: std-db
+    restart: always
+    environment:
+      - TZ=Asia/Bangkok
+      - MYSQL_ROOT_PASSWORD=your pass
+      - MYSQL_DATABASE=your db
+    volumes:
+      - ./data_main:/var/lib/mysql
+      - ./config/db/my.cnf:/etc/mysql/my.cnf
+      - ./config/db/conf.d:/etc/mysql/conf.d
+    ports:
+      - 3306:3306
+    networks:
+      - std-network
+
+  std-proxy:
+    image: jc21/nginx-proxy-manager:latest
+    container_name: std-proxy
+    restart: unless-stopped
+    ports:
+      - 80:80
+      - 443:443
+      - 81:81
+    depends_on:
+      - std-web
+    environment:
+      DB_SQLITE_FILE: /data/database.sqlite
+    volumes:
+      - ./nginx/data:/data
+      - ./nginx/letsencrypt:/etc/letsencrypt
+    networks:
+      - std-network
+
+  std-phpmyadmin:
+    container_name: std-phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    volumes:
+      - ./phpmyadmin/phpmyadmin.conf:/etc/apache2/sites-available/phpmyadmin.conf:ro
+      - ./phpmyadmin/phpmyadmin.conf:/etc/apache2/sites-enabled/phpmyadmin.conf:ro
+    ports:
+      - 80
+    depends_on:
+      - std-db
+    environment:
+      - PMA_HOST=std-db
+      - MYSQL_USERNAME=user
+      - MYSQL_ROOT_PASSWORD=your pass
+    networks:
+      - std-network
+
+  std-web:
+    container_name: std-web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 80
+    volumes:
+      - ./:/var/www/html
+      - ./.htaccess:/var/www/html/.htaccess
+      - ./tmp:/var/www/html/tmp
+    networks:
+      - std-network
+
+networks:
+  std-network:
+    driver: bridge

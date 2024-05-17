@@ -1,0 +1,3 @@
+[mariadb]
+thread_handling     = pool-of-threads
+thread_pool_size    = 4

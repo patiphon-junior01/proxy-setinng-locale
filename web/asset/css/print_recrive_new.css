@@ -1,0 +1,35 @@
+@media print {
+  @page {
+    size: A4;
+    margin: 100px 30px;
+  }
+
+  .btn_print,
+  .none-print {
+    display: none;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .border_print_recieveStd {
+    page-break-before: always;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+    transform: rotate(90deg);
+    page-break-before: always;
+  }
+
+  .logos {
+    width: 200px;
+    height: 200px;
+  }
+
+  .logos .image-main {
+    position: absolute;
+    transform: translate(50%, 0%)
+  }
+}

@@ -1,0 +1,52 @@
+@page {
+  size: "A4";
+  margin-top: 50px;
+  margin-bottom: 50px;
+  margin-right: 50px;
+  margin-left: 50px;
+}
+
+
+
+
+* {
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 150%;
+}
+
+
+.border_print_detail_std {
+  border: 1px solid #00ce4f;
+  position: relative;
+  width: 100%;
+  height: 1479px !important;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-right: 4px;
+  padding-left: 4px;
+  margin-bottom: 50px;
+}
+
+
+
+
+
+/* .tranfroms-x {
+  transform: rotate(90deg);
+} */
+
+
+
+
+@media print {
+
+  .btn_print,
+  .none-print {
+    display: none;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+}

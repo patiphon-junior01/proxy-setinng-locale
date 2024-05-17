@@ -1,0 +1,11 @@
+[mysqld]
+bind_address        = 0.0.0.0
+max_connections     = 500
+max_user_connections = 500
+connect_timeout     = 60
+wait_timeout        = 600
+
+skip_name_resolve
+
+[client]
+protocol            = tcp

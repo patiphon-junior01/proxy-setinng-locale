@@ -1,0 +1,19 @@
+RewriteEngine On
+
+# หากไฟล์ที่ร้องขออยู่ในไดเรกทอรี /backend ให้เข้าถึงโดยตรง
+RewriteCond %{REQUEST_URI} ^/backend/ [NC]
+RewriteCond %{REQUEST_FILENAME} -f
+RewriteRule ^ - [L]
+
+# หากไฟล์ที่ร้องขออยู่ในไดเรกทอรี /web ไม่ให้เข้าถึงโดยตรง
+RewriteCond %{REQUEST_URI} ^/web/ [NC]
+RewriteRule ^ - [F]
+
+# หากไฟล์ที่ร้องขอไม่ใช่ไฟล์ที่มีอยู่ ให้เปลี่ยนเส้นทางไปยัง index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# ตั้งค่า HTTP Header สำหรับ X-Frame-Options เป็น SAMEORIGIN
+<IfModule mod_headers.c>
+  Header always set X-Frame-Options "SAMEORIGIN"
+</IfModule>
