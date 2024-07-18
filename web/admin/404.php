@@ -28,7 +28,6 @@ if (!$required) {
     <?php include("web/layout/slidebar.php"); ?>
 
 
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
@@ -45,7 +44,7 @@ if (!$required) {
       </section>
       <!-- /.content -->
     </div>
-    <?php include("web/layout/footer.php"); ?>
+    <?php include("/web/layout/footer.php"); ?>
   </div>
 
 
