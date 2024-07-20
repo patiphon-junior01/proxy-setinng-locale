@@ -1,23 +1,18 @@
 <?php
+
 class HTTP
 {
-  private static $enpoint = 'http://pong-framework.test';
-
-  // if you want use __construct
-  // public function __construct($enpoint)
-  // {
-  //   self::$enpoint = $enpoint;
-  // }
+  private static $enpoint;
 
   public static function ControllersGet($route)
   {
     try {
+      self::$enpoint = constant("Beseurl");
       $route = self::$enpoint . $route;
       $decode = self::CurlRoute($route, null, false, ['Content-Type: application/json'], true, 100, "GET");
       return $decode;
-      return $decode;
     } catch (Exception $e) {
-      return ["Message" => $e->getMessage(), "Status" => "Error 500", "StatusCode" => 500];
+      return ["Message" => $e->getMessage(), "Status" => "Error 500", "StatusCode" => 500, "xx" => constant("Beseurl")];
     }
   }
 
@@ -25,6 +20,7 @@ class HTTP
   public static function ControllersPostOptionJson($route, $body, $method = "POST")
   {
     try {
+      self::$enpoint = constant("Beseurl");
       $route = self::$enpoint . $route;
       $decode = self::CurlRoute($route, $body, true, ['Content-Type: application/json'], true, 100, $method);
       return $decode;
@@ -36,12 +32,27 @@ class HTTP
   public static function ControllersPostUploadFileJson($route, $body, $method = "POST")
   {
     try {
+      self::$enpoint = constant("Beseurl");
       $headers = ['Content-Type: multipart/form-data'];
       $route = self::$enpoint . $route;
       $decode = self::CurlRoute($route, $body, true, $headers, true, 100, $method);
       return $decode;
     } catch (Exception $e) {
       return ["Message" => $e->getMessage(), "Status" => "Error 500", "StatusCode" => 500];
+    }
+  }
+
+
+  public static function ControllersGetWithToken($route, $token)
+  {
+    try {
+      self::$enpoint = constant("Beseurl");
+      $route = self::$enpoint . $route;
+      $decode = self::CurlRoute($route, null, false, ["Authorization: Bearer {$token}"], true, 100, "GET"); //is pass
+      // $decode = self::CurlRoute($route, null, false, ['Content-Type: application/json'], true, 100, "GET"); not pass
+      return $decode;
+    } catch (Exception $e) {
+      return ["Message" => $e->getMessage(), "Status" => "Error 500", "StatusCode" => 500, "xx" => constant("Beseurl")];
     }
   }
 

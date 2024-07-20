@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     echo json_encode(["Message" => "File Invalid", "Status" => "File Invalid", "StatusCode" => 500, "files" => $_FILES]);
   } catch (Exception $e) {
-    echo json_encode(["Message" => $e->getMessage(), "Status" => "Internal Error", "StatusCode" => 500]);
+    echo json_encode(["Message" => "Internal Error", "Status" => "Internal Error", "StatusCode" => 500]);
   }
 } else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
   $rawPostData = file_get_contents('php://input');

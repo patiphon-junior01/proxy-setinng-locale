@@ -1,7 +1,10 @@
 <?php
 header('X-Frame-Options: SAMEORIGIN');
+require __DIR__ . "/config.php";
+
 $request = $_SERVER['REDIRECT_URL'];
 $required = true;
+
 
 // ไม่ให้เข้าไปยัง folder หลัก
 $myArray = explode("/", $request);
@@ -36,6 +39,10 @@ switch ($request) {
 
   case '/admin/upload':
     require __DIR__ . '/web/admin/upload.php';
+    break;
+
+  case '/admin/validate':
+    require __DIR__ . '/web/admin/validate-with-token.php';
     break;
 
   default:

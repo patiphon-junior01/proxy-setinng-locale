@@ -9,6 +9,9 @@ session_start([
   'sid_bits_per_character' => 6,
 ]);
 
+
+
+
 // ถ้าจะใช้ให้เปิด
 require("api/HTTP/index.php");
 // require('backend/function.php');
