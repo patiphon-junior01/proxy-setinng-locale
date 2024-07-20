@@ -1,12 +1,7 @@
 <?php
 include_once("web/layout/headerInclude.php");
 $page_nav = 0;
-// required connect with router only
-if (!$required) {
-  header('Location: /pong-framework');
-}
-
-$decode = HTTP::ControllersGet("/api/v1/route.php?query_string=bngfnbgh");
+$decode = HTTP::ControllersGet("/api/v1/route.php?query_string=test-get-query-string");
 
 // send data to crul with method post
 $decodePost = null;
@@ -62,9 +57,9 @@ if (isset($_POST['input-id']) && $_POST['input-id']) {
         <div class="container-fluid">
           <?php
           // if ($decodePost) {
-          //   echo "<pre>";
-          //   print_r($decodePost);
-          //   echo "</pre>";
+          // echo "<pre>";
+          // print_r($decode);
+          // echo "</pre>";
           // }
           ?>
           <div class="border-bottom mb-4">

@@ -35,13 +35,14 @@ AdminLTE v3.2.0
 <!-- rest api with curl--> ✅
 <!-- rest upload file --> ✅
 <!-- rest delete file --> ✅
-<!-- env mangement -->
-<!-- middleware api http with jwt -->
-<!-- migrate data models-->
+<!-- env mangement --> ✅
+<!-- api validate with jwt --> ✅
+<!-- middleware api  -->
 <!-- handle route controlers-->
-<!-- core -->
+<!-- migrate data models-->
 <!-- file management -->
-<!-- ci/cd -->
 <!-- new threme with admin connect-->
 <!-- docker backup data -->
+<!-- core -->
+<!-- ci/cd -->
 <!-- document -->

@@ -1,6 +1,21 @@
 <?php
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
 include_once("web/layout/headerInclude.php");
+
 $page_nav = 0;
+$key = $_ENV['SECRET_KEY'];
+$payload = [
+  'iss' => 'http://example.org',
+  'aud' => 'http://example.com',
+  'iat' => 1356999524,
+  'nbf' => 1357000000
+];
+
+$jwt = JWT::encode($payload, $key, 'HS256');
+$decode = HTTP::ControllersGetWithToken("/api/v1/validate/route.php", $jwt);
 ?>
 
 <!DOCTYPE html>
@@ -47,7 +62,13 @@ $page_nav = 0;
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <p>Wait Content</p>
+          <?php
+          if ($decode) {
+            echo "<pre>";
+            print_r($decode);
+            echo "</pre>";
+          }
+          ?>
         </div>
         <button id="topButton" class="btn_totop"><i class="fas fa-chevron-up"></i></button>
       </section>
