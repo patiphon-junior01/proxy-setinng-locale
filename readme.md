@@ -34,7 +34,7 @@ AdminLTE v3.2.0
 <!-- docker run -->
 <!-- rest api with curl--> ✅
 <!-- rest upload file --> ✅
-<!-- rest delete file -->
+<!-- rest delete file --> ✅
 <!-- env mangement -->
 <!-- middleware api http with jwt -->
 <!-- migrate data models-->

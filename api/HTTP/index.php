@@ -74,7 +74,6 @@ class HTTP
 
       $response = curl_exec($curl);
 
-      return $response;
       if (curl_errno($curl)) {
         $error_msg = curl_error($curl);
         curl_close($curl);

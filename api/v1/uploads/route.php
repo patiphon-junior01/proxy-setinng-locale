@@ -32,6 +32,65 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } catch (Exception $e) {
     echo json_encode(["Message" => $e->getMessage(), "Status" => "Internal Error", "StatusCode" => 500]);
   }
+} else if ($_SERVER['REQUEST_METHOD'] == 'DELETE') {
+  $rawPostData = file_get_contents('php://input');
+  $deleteReq = json_decode($rawPostData, true);   // Decode JSON data
+  try {
+    $uploads_dir = 'uploads';
+
+    // find file
+    if (file_exists("./../../../" . $uploads_dir . "/" . $deleteReq['file'])) {
+      unlink("./../../../" . $uploads_dir . "/" . $deleteReq['file']);
+      http_response_code(200);
+      echo json_encode(
+        [
+          "Message" => "ลบไฟล์สำเร็จ",
+          "Status" => "Success",
+          "StatusCode" => 200,
+          "files-name" => $deleteReq['file']
+        ]
+      );
+      exit;
+      return;
+    } {
+      http_response_code(400);
+      echo json_encode(
+        [
+          "Message" => "ไม่พบรายการไฟล์",
+          "Status" => "Faile To Delete",
+          "StatusCode" => 404,
+          "files-name" => $deleteReq['file']
+        ]
+      );
+      return;
+    }
+
+    if (unlink("./../../../" . $uploads_dir . "/" . $deleteReq['file'])) {
+      http_response_code(200);
+      echo json_encode(
+        [
+          "Message" => "ลบไฟล์สำเร็จ",
+          "Status" => "Success",
+          "StatusCode" => 200,
+          "files-name" => $deleteReq['file']
+        ]
+      );
+      return;
+    } else {
+      http_response_code(400);
+      echo json_encode(
+        [
+          "Message" => "ลบไฟล์ไม่สำเร็จ",
+          "Status" => "Faile To Delete",
+          "StatusCode" => 400,
+          "files-name" => $deleteReq['file']
+        ]
+      );
+      return;
+    }
+  } catch (Exception $e) {
+    echo json_encode(["Message" => $e->getMessage(), "Status" => "Internal Error", "StatusCode" => 500]);
+  }
 } else {
   http_response_code(405);
   echo json_encode(["Message" => "Method not allowed", "Status" => "Not Found Method", "StatusCode" => 403]);
