@@ -1,10 +1,11 @@
 <?php
-header('X-Frame-Options: SAMEORIGIN');
+require __DIR__ . "/config_session.php";
 require __DIR__ . "/config.php";
+require __DIR__ . "/api/middlewares/page/authorize-token.php";
+header('X-Frame-Options: SAMEORIGIN');
 
 $request = $_SERVER['REDIRECT_URL'];
 $required = true;
-
 
 // ไม่ให้เข้าไปยัง folder หลัก
 $myArray = explode("/", $request);
@@ -15,7 +16,7 @@ if ($myArray[1] == "/web") {
 
 // for get array server or debug
 // echo "<pre>";
-// print_r($_SERVER);
+// print_r($_SESSION);
 // echo "</pre>";
 
 // default routing
@@ -42,7 +43,11 @@ switch ($request) {
     break;
 
   case '/admin/validate':
-    require __DIR__ . '/web/admin/validate-with-token.php';
+    $isPass = ValidateTokenLogin($_SESSION['token']); // is pass
+    // $isPass = ValidateTokenLogin(" vkfdgbnk"); // no pass
+    if ($isPass) {
+      require __DIR__ . '/web/admin/validate-with-token.php';
+    }
     break;
 
   default:

@@ -20,7 +20,8 @@ RUN a2enmod rewrite headers \
 # RUN service apache2 restart
 
 COPY ./ /var/www/html/
-RUN chown -R www-data:www-data .
+RUN chown -R www-data:www-data ./
+RUN chmod -R 700 tmp
 
 EXPOSE 80
 

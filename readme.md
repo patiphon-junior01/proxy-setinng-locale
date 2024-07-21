@@ -37,7 +37,8 @@ AdminLTE v3.2.0
 <!-- rest delete file --> ✅
 <!-- env mangement --> ✅
 <!-- api validate with jwt --> ✅
-<!-- middleware api  -->
+<!-- middleware api  ✅ -->
+<!-- middleware page  ✅ -->
 <!-- handle route controlers-->
 <!-- migrate data models-->
 <!-- file management -->

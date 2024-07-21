@@ -1,16 +1,15 @@
 <?php
-
-use Firebase\JWT\JWT;
-use Firebase\JWT\Key;
-
 require("../../../config.php");
-require("../../function.php");
-require("../../../lib/validate.php");
-// http: //pong-framework.test/api/v1/route.php?query_string=string-date
 header("Access-Control-Allow-Origin: *");
 header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE");
 header("Access-Control-Allow-Headers: X-Requested-With");
 header("Content-Type: application/json");
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
+require("../../function.php");
+require("../../middlewares/authorize-token.php");
 
 $function = new db();
 
@@ -20,11 +19,14 @@ $decoded = null;
 $varValidate = ValidateToken($headers);
 if ($varValidate[0] !== true) {
   http_response_code(403);
-  echo json_encode($varValidate);
+  echo json_encode($varValidate[0]);
   return;
 }
-$decoded = $varValidate[1];
+$decoded = $varValidate;
 // end validate
+
+$Authorization = $headers['Authorization'];
+$token =  (explode(" ", $Authorization));
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   try {
@@ -44,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         "table-first" => $data,
         "Playload" => $decoded,
         "Time" => Time(),
+        "Session" => ["token" => $token[1]]
       ]
     );
   } catch (Exception $e) {

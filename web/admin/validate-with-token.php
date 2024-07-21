@@ -1,9 +1,8 @@
 <?php
+include_once("web/layout/headerInclude.php");
 
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
-
-include_once("web/layout/headerInclude.php");
 
 $page_nav = 0;
 $key = $_ENV['SECRET_KEY'];
@@ -11,11 +10,22 @@ $payload = [
   'iss' => 'http://example.org',
   'aud' => 'http://example.com',
   'iat' => 1356999524,
-  'nbf' => 1357000000
+  'nbf' => 1357000000,
+  'time' => time()
 ];
 
-$jwt = JWT::encode($payload, $key, 'HS256');
+$jwt = null;
+if (!isset($_SESSION['token'])) {
+  $jwt = JWT::encode($payload, $key, 'HS256');
+} else {
+  $jwt = $_SESSION['token'];
+}
+
 $decode = HTTP::ControllersGetWithToken("/api/v1/validate/route.php", $jwt);
+if ($decode['StatusCode'] == 200) {
+  $_SESSION["token"] =  $decode["Session"]["token"];
+  $_SESSION["fullname"] =  "Patiphon";
+}
 ?>
 
 <!DOCTYPE html>
@@ -34,10 +44,10 @@ $decode = HTTP::ControllersGetWithToken("/api/v1/validate/route.php", $jwt);
   <input type="number" id="nav_page" value="<?= $page_nav  ?>" class="d-none">
   <div class="wrapper">
 
-    <!-- <?php include("web/layout/preloder.php"); ?> -->
+
+    <?php include("web/layout/preloder.php"); ?>
     <?php include("web/layout/header.php"); ?>
     <?php include("web/layout/slidebar.php"); ?>
-
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
