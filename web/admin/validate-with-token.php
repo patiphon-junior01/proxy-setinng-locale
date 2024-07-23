@@ -73,9 +73,10 @@ if ($decode['StatusCode'] == 200) {
       <section class="content">
         <div class="container-fluid">
           <?php
+          // print_r($decode);
           if ($decode) {
             echo "<pre>";
-            print_r($decode);
+            var_dump($decode);
             echo "</pre>";
           }
           ?>

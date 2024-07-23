@@ -43,6 +43,7 @@ switch ($request) {
     break;
 
   case '/admin/validate':
+    // for test middlewares page
     $isPass = ValidateTokenLogin($_SESSION['token']); // is pass
     // $isPass = ValidateTokenLogin(" vkfdgbnk"); // no pass
     if ($isPass) {
