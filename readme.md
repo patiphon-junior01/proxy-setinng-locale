@@ -39,7 +39,7 @@ AdminLTE v3.2.0
 <!-- api validate with jwt --> ✅
 <!-- middleware api  ✅ -->
 <!-- middleware page  ✅ -->
-<!-- handle route controlers-->
+<!-- handle route controlers ✅-->
 <!-- migrate data models-->
 <!-- file management -->
 <!-- new threme with admin connect-->

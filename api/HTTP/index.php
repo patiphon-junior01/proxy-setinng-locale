@@ -93,6 +93,7 @@ class HTTP
 
       curl_close($curl);
       $decode = json_decode($response, true);
+      // $decode = $response; // if want no format to array if response is text
 
       return $decode;
     } catch (Exception $e) {
