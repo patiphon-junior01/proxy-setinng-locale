@@ -5,7 +5,7 @@ Version v1.0.0
 a2enmod rewrite
 service apache2 restart
 
-# .htaccess sett ing
+# .htaccess Setting rule
 
 ## for docker
 
@@ -35,14 +35,13 @@ AdminLTE v3.2.0
 
 # Feature
 
-- docker run with proxy manager
-- rest api with curl ✅
-- rest upload file ✅
-- rest delete file ✅
-- env mangement ✅
-- api validate with jwt ✅
-- middleware api ✅
-- middleware page ✅
-- handle route controlers ✅
-- migrate data models create delete ✅
-- file management
+- Docker Run With Proxy Manager
+- REST API with curl
+- REST upload file
+- REST delete file
+- env Management
+- API validate with jwt
+- Middleware api
+- Middleware page
+- Handler route controlers
+- Migrate data models create delete
