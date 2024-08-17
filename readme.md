@@ -1,4 +1,5 @@
-Version v1.0.0
+Pong Framework : Version v2.0.0
+Author ปฏิพล วงศ์ศรี | Patiphon Wongsee
 
 # For restart service apache2
 
