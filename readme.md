@@ -122,6 +122,14 @@ Ensure your domain is correctly configured to point to your local machine if you
 - **`index.php`**: This file contains the route configuration.
 - **View Files**: All view files are located inside the `web` directory.
 
+## Migration Data
+
+- cd models config your model and docker exec to dir models and run
+
+```bash
+php migration.php create | drop
+```
+
 ## Troubleshooting
 
 If you encounter any issues with port conflicts, ensure that the specified ports are not being used by other services or containers. You can check for running services using:
