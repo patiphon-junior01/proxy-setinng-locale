@@ -1,10 +1,6 @@
 <?php
 include_once("layout/headerInclude.php");
 $page_nav = 1;
-// required connect with router only
-if (!$required) {
-  header('Location: /pong-framework');
-}
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +24,6 @@ if (!$required) {
     <?php include("web/layout/slidebar.php"); ?>
 
 
-
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
 
@@ -45,7 +40,7 @@ if (!$required) {
       </section>
       <!-- /.content -->
     </div>
-    <?php include("web/layout/footer.php"); ?>
+    <?php include("/web/layout/footer.php"); ?>
   </div>
 
 

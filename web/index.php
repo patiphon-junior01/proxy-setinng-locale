@@ -1,9 +1,5 @@
 <?php
 include_once("layout/headerInclude.php");
-// required connect with router only
-if (!$required) {
-  header('Location: /pong-framework');
-}
 ?>
 
 <!DOCTYPE html>

@@ -13,7 +13,7 @@ $list = [
         "name" => "Index Page",
         "icon" => "far fa-circle",
         "tooltip" => "Index Page",
-        "link" => "/pong-framework/",
+        "link" => "/",
         "menu_number" => "1",
         "module_number" => "main",
       ],

@@ -1,6 +1,31 @@
 <?php
 include_once("web/layout/headerInclude.php");
+
+use Firebase\JWT\JWT;
+use Firebase\JWT\Key;
+
 $page_nav = 0;
+$key = $_ENV['SECRET_KEY'];
+$payload = [
+  'iss' => 'http://example.org',
+  'aud' => 'http://example.com',
+  'iat' => 1356999524,
+  'nbf' => 1357000000,
+  'time' => time()
+];
+
+$jwt = null;
+if (!isset($_SESSION['token'])) {
+  $jwt = JWT::encode($payload, $key, 'HS256');
+} else {
+  $jwt = $_SESSION['token'];
+}
+
+$decode = HTTP::ControllersGetWithToken("/api/v1/validate/route.php", $jwt);
+if ($decode['StatusCode'] == 200) {
+  $_SESSION["token"] =  $decode["Session"]["token"];
+  $_SESSION["fullname"] =  "Patiphon";
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,10 +44,10 @@ $page_nav = 0;
   <input type="number" id="nav_page" value="<?= $page_nav  ?>" class="d-none">
   <div class="wrapper">
 
-    <!-- <?php include("web/layout/preloder.php"); ?> -->
+
+    <?php include("web/layout/preloder.php"); ?>
     <?php include("web/layout/header.php"); ?>
     <?php include("web/layout/slidebar.php"); ?>
-
 
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
@@ -47,7 +72,14 @@ $page_nav = 0;
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <p>Wait Content</p>
+          <?php
+          // print_r($decode);
+          if ($decode) {
+            echo "<pre>";
+            var_dump($decode);
+            echo "</pre>";
+          }
+          ?>
         </div>
         <button id="topButton" class="btn_totop"><i class="fas fa-chevron-up"></i></button>
       </section>

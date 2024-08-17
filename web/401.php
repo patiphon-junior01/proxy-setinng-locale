@@ -20,7 +20,7 @@ include_once("layout/headerInclude.php");
   <div class="">
     <?php include("web/layout/preloder.php"); ?>
     <div class="p-5 w-100 d-flex flex-column align-items-center">
-      <p class="fs-1 fw-bold ">404 ไม่พบหน้าที่ต้องการ !!</p>
+      <p class="fs-1 fw-bold ">401 Unauthorized</p>
       <button class="mt-2 btn btn-primary"><a class="text-white" href="/">ไปหน้าเเรก</a></button>
       <button class="mt-2 btn btn-primary"><a class="text-white" href="/admin">ไปหน้า Admin</a></button>
     </div>

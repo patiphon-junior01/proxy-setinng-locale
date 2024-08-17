@@ -4,8 +4,6 @@ include("data.php");
 class db extends config
 {
 
-
-
     function select_manaul_field($table, array $field_arr)
     {
         $sql = 'SELECT ' . implode(',', $field_arr) . ' FROM ' . $table;
@@ -14,7 +12,6 @@ class db extends config
         $result = $stmt->fetchAll();
         return $result;
     }
-
 
     function select_manaul_fieldConition($table, array $field_arr, $condition)
     {
@@ -42,7 +39,6 @@ class db extends config
         $result = $stmt->fetch();
         return $result['count'];
     }
-
 
     function select_manual($table, array $select_field_arr, array $where_arr, array $value_arr)
     {
@@ -256,8 +252,6 @@ class db extends config
         move_uploaded_file($image_send['tmp_name'], $path_link);
         return $name_img;
     }
-
-
 
 
     public static function cut_phone($phone)

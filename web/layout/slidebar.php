@@ -1,11 +1,10 @@
 <?php
 include("web/menu/menu.php");
-// include "web/menu/menu.php";
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
   <!-- Brand Logo -->
   <a href="./home" class="brand-link">
-    <img src="/pong-framework/web/favicon/logoweb.png" style="width: 45px;" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8;">
+    <img src="/web/favicon/logoweb.png" style="width: 45px;" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8;">
     <span class="brand-text font-weight-light">Pong Framework</span>
   </a>
 

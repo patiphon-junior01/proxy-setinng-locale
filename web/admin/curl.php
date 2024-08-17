@@ -1,6 +1,14 @@
 <?php
 include_once("web/layout/headerInclude.php");
 $page_nav = 0;
+$decode = HTTP::ControllersGet("/api/v1/route.php?query_string=test-get-query-string");
+
+// send data to crul with method post
+$decodePost = null;
+if (isset($_POST['input-id']) && $_POST['input-id']) {
+  $postData = json_encode(['input-id' => $_POST['input-id']]);
+  $decodePost = HTTP::ControllersPostOptionJson("/api/v1/route.php", $postData); //Default is Post Method
+}
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +27,7 @@ $page_nav = 0;
   <input type="number" id="nav_page" value="<?= $page_nav  ?>" class="d-none">
   <div class="wrapper">
 
-    <!-- <?php include("web/layout/preloder.php"); ?> -->
+    <?php include("web/layout/preloder.php"); ?>
     <?php include("web/layout/header.php"); ?>
     <?php include("web/layout/slidebar.php"); ?>
 
@@ -47,7 +55,44 @@ $page_nav = 0;
       <!-- Main content -->
       <section class="content">
         <div class="container-fluid">
-          <p>Wait Content</p>
+          <?php
+          // if ($decodePost) {
+          // echo "<pre>";
+          // print_r($decode);
+          // echo "</pre>";
+          // }
+          ?>
+          <div class="border-bottom mb-4">
+            <p class="fw-bold">List Form Get API</p>
+            <ul>
+              <?php foreach ($decode['data'] as $index => $row) { ?>
+                <li>
+                  <?= $index + 1 . " : " . $row['name'] ?>
+                </li>
+              <?php } ?>
+            </ul>
+          </div>
+          <div>
+            <p class="fw-bold">List Form POST API</p>
+            <form action="<?= $_SERVER['REDIRECT_URL'] ?>" method="post">
+              <input type="number" name="input-id" id="input-id" class="form-control mb-2" placeholder="Types Number..">
+              <p class="mb-1">input-id is :
+                <?= isset($_POST['input-id']) && $_POST['input-id']  != '' ? $_POST['input-id'] : "N/A" ?></p>
+              <button class="btn btn-dark mb-2">Submit</button>
+              <button class="btn btn-info mb-2" onclick="()=> {
+              window.location.reload()
+              }">Clear</button>
+              <div>Result :
+                <?php
+                if ($decodePost) {
+                  echo "<pre>";
+                  print_r($decodePost);
+                  echo "</pre>";
+                }
+                ?>
+              </div>
+            </form>
+          </div>
         </div>
         <button id="topButton" class="btn_totop"><i class="fas fa-chevron-up"></i></button>
       </section>
