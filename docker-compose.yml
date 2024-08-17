@@ -16,7 +16,7 @@ services:
     ports:
       - 3750:3306
     networks:
-      - pong-network
+      - locale-network
 
   pong-proxy:
     image: jc21/nginx-proxy-manager:latest
@@ -34,7 +34,7 @@ services:
       - ./nginx/data:/data
       - ./nginx/letsencrypt:/etc/letsencrypt
     networks:
-      - pong-network
+      - locale-network
 
   pong-phpmyadmin:
     container_name: pong-phpmyadmin
@@ -52,22 +52,8 @@ services:
       - MYSQL_USERNAME=admin7
       - MYSQL_ROOT_PASSWORD=me4Kk2o7VlfNyoLxU9YCQbB0JvXmQOz05hKJ8vUZOyc=
     networks:
-      - pong-network
-
-  pong-web:
-    container_name: pong-web
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - 80
-    volumes:
-      - ./:/var/www/html
-      - ./.htaccess:/var/www/html/.htaccess
-      - ./tmp:/var/www/html/tmp
-    networks:
-      - pong-network
+      - locale-network
 
 networks:
-  pong-network:
+  locale-network:
     driver: bridge

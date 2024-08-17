@@ -53,5 +53,4 @@ Thumbs.db
 
 /data
 /nginx
-/vendor
-/tmp/*
+.env
