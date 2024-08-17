@@ -27,13 +27,18 @@ class config
     return $this->conn;
   }
 
+
+  public  function getConnection()
+  {
+    return $this->conn;
+  }
+
   public function testinput($data)
   {
     $data = strip_tags($data);
     $data = htmlspecialchars($data);
     $data = stripslashes($data);
     $data = trim($data);
-
     return $data;
   }
 
@@ -48,7 +53,6 @@ class config
 
   public function message($context, $status)
   {
-
     return  json_encode(["massage" => $context, "status" => $status]);
   }
 }
